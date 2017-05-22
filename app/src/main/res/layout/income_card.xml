@@ -28,7 +28,7 @@
             android:textSize="@dimen/album_title" />
 
         <TextView
-            android:id="@+id/count"
+            android:id="@+id/counti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"

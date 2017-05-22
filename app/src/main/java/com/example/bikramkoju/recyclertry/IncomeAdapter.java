@@ -31,7 +31,7 @@ class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.MyViewHolder> {
         public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
-            count = (TextView) itemView.findViewById(R.id.count);
+            count = (TextView) itemView.findViewById(R.id.counti);
             thumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
             overflow = (ImageView) itemView.findViewById(R.id.overflow);
         }
@@ -50,13 +50,28 @@ class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         IncomeDetail incomeDetail=incomeDetailList.get(position);
         holder.title.setText(incomeDetail.getName());
         holder.count.setText(incomeDetail.getPrice() + " rupees");
 
         //loading income cover using Glide library
         Glide.with(mContext).load(incomeDetail.getThumbnail()).into(holder.thumbnail);
+
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(mContext, "Item clicked at "+ position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Toast.makeText(mContext, "title is clicked", Toast.LENGTH_LONG).show();
+            }
+        });
 
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override

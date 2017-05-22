@@ -70,23 +70,25 @@ public class IncomeFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(incomeAdapter);
 
-        recyclerView.setOnClickListener(new View.OnClickListener() {
+        /*recyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TextView abc= (TextView) v.findViewById(R.id.count);
                 Toast.makeText(getActivity(), "some"+abc.getText().toString(), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
        /* recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
 
-                IncomeDetail incomeDetail=(IncomeDetail) recyclerView.setOnClickListener();
-                long value = Long.parseLong(String.valueOf(incomeDetail.getPrice()));
+               *//* IncomeDetail incomeDetail = (IncomeDetail) recyclerView.getChildAdapterPosition(position)
+                        int pos =recyclerView.getChildAdapterPosition(view);*//*
+                //long value = Long.parseLong(String.valueOf(incomeDetail.getPrice()));
 
-                sum=sum+value;
-                result.setText(String.valueOf(sum));
+               //sum=sum+value;
+
+               // result.setText(String.valueOf(value));
 
 
 
@@ -99,8 +101,7 @@ public class IncomeFragment extends Fragment {
                 Toast.makeText(getActivity(), "onLongCleck", Toast.LENGTH_SHORT).show();
 
             }
-        }));
-*/
+        }));*/
         prepareIncome();
     }
 
@@ -138,7 +139,7 @@ public class IncomeFragment extends Fragment {
 
             View child = rv.findChildViewUnder(e.getX(), e.getY());
             if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
-                clickListener.onClick(child, rv.getChildPosition(child));
+                clickListener.onClick(child, rv.getChildAdapterPosition(child));
             }
             return false;
         }
