@@ -78,12 +78,12 @@ public class IncomeFragment extends Fragment {
             }
         });*/
 
-       /* recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
 
-               *//* IncomeDetail incomeDetail = (IncomeDetail) recyclerView.getChildAdapterPosition(position)
-                        int pos =recyclerView.getChildAdapterPosition(view);*//*
+                /*IncomeDetail incomeDetail = (IncomeDetail) recyclerView.getChildAdapterPosition(position)
+                        int pos =recyclerView.getChildAdapterPosition(view);*/
                 //long value = Long.parseLong(String.valueOf(incomeDetail.getPrice()));
 
                //sum=sum+value;
@@ -101,11 +101,11 @@ public class IncomeFragment extends Fragment {
                 Toast.makeText(getActivity(), "onLongCleck", Toast.LENGTH_SHORT).show();
 
             }
-        }));*/
+        }));
         prepareIncome();
     }
 
-   /* public static interface ClickListener {
+    public static interface ClickListener {
         public void onClick(View view, int position);
 
         public void onLongClick(View view, int position);
@@ -152,7 +152,7 @@ public class IncomeFragment extends Fragment {
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
         }
-    }*/
+    }
 
     private void prepareIncome() {
         int[] incomes=new int[]{

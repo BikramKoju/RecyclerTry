@@ -58,7 +58,7 @@ class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.MyViewHolder> {
         //loading income cover using Glide library
         Glide.with(mContext).load(incomeDetail.getThumbnail()).into(holder.thumbnail);
 
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+        /*holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -71,7 +71,7 @@ class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.MyViewHolder> {
             public void onClick(View v) {
                Toast.makeText(mContext, "title is clicked", Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
 
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override

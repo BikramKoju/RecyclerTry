@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -46,13 +47,29 @@ public class ExpenseAdapter  extends RecyclerView.Adapter<ExpenseAdapter.MyViewH
     }
 
     @Override
-    public void onBindViewHolder(final ExpenseAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(final ExpenseAdapter.MyViewHolder holder, final int position) {
         ExpenseDetail expenseDetail=expenseDetailList.get(position);
         holder.title.setText(expenseDetail.getName());
         holder.count.setText(expenseDetail.getPrice() + " rupees");
 
         //loading income cover using Glide library
         Glide.with(mContext).load(expenseDetail.getThumbnail()).into(holder.thumbnail);
+
+
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(mContext, "Item clicked at "+ position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "title is clicked", Toast.LENGTH_LONG).show();
+            }
+        });
 
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
