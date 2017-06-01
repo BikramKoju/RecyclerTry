@@ -1,5 +1,7 @@
 package com.example.bikramkoju.recyclertry;
 
+import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
+
 /**
  * Created by Bikramkoju on 5/18/2017.
  */
@@ -8,6 +10,8 @@ public class IncomeDetail {
     private String name;
     private int price;
     private int thumbnail;
+
+
 
     public IncomeDetail(){
 

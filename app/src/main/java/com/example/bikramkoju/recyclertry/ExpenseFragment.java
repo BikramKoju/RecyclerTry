@@ -12,6 +12,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,10 @@ public class ExpenseFragment extends Fragment {
     RecyclerView recyclerView;
     private ExpenseAdapter expenseAdapter;
     private List<ExpenseDetail> expenseDetailList;
+
+    TextView result;
+
+    DatabaseHelper db;
 
     @Nullable
     @Override
@@ -38,12 +45,27 @@ public class ExpenseFragment extends Fragment {
 
         recyclerView=(RecyclerView)view.findViewById(R.id.expenseView);
 
+        db=new DatabaseHelper(getActivity());
+        db.insertData2("कपाल काटेको", 100);
+        db.insertData2("कपाल कालो गरेको",200);
+        db.insertData2("फेसवास गरेको",50);
+        db.insertData2("कपाल रातो गरेको",120);
+        db.insertData2("बच्चाको कपाल काटेको (१० बर्ष मुनिको",40);
+        db.insertData2("फेसियल गरेको",200);
+        db.insertData2("फचे ब्लीच गरेको",150);
+        db.insertData2("दार्ही काटेको",30);
+        db.insertData2("सेम्पु गरेको",60);
+        db.insertData2("हेयर डराई गरेको",25);
+
+        result=(TextView) view.findViewById(R.id.resultb);
+
+
         expenseDetailList=new ArrayList<>();
         expenseAdapter=new ExpenseAdapter(getActivity(),expenseDetailList);
 
-        RecyclerView.LayoutManager mLayoutManager=new GridLayoutManager(getActivity(),2);
+        RecyclerView.LayoutManager mLayoutManager=new GridLayoutManager(getActivity(),3);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10),true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(5),true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(expenseAdapter);
 

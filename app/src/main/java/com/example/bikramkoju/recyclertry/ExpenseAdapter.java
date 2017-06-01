@@ -23,14 +23,14 @@ public class ExpenseAdapter  extends RecyclerView.Adapter<ExpenseAdapter.MyViewH
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
-        public ImageView thumbnail, overflow;
+        public ImageView thumbnail;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
             count = (TextView) itemView.findViewById(R.id.count);
             thumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
-            overflow = (ImageView) itemView.findViewById(R.id.overflow);
+
         }
     }
 
@@ -71,47 +71,7 @@ public class ExpenseAdapter  extends RecyclerView.Adapter<ExpenseAdapter.MyViewH
             }
         });
 
-       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopupMenu(holder.overflow);
-            }
-        });*/
-
     }
-
-   /* private void showPopupMenu(ImageView overflow) {
-        PopupMenu popup=new PopupMenu(mContext,overflow);
-        MenuInflater inflater=popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_Album,popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-        popup.show();
-    }
-
-    *//**
-     * Click listener for popup menu items
-     *//*
-    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-        public MyMenuItemClickListener() {
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
-                    return true;
-                case R.id.action_play_next:
-                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
-                    return true;
-                default:
-            }
-            return false;
-        }
-    }*/
-
-
     @Override
     public int getItemCount() {
         return expenseDetailList.size();
