@@ -1,28 +1,34 @@
-package com.example.bikramkoju.recyclertry;
+package com.example.bikramkoju.recyclertry.income;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+
+import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
+import com.example.bikramkoju.recyclertry.income_edit_detail.IncomeEditFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +46,18 @@ public class IncomeFragment extends Fragment {
 
     private TextView result;
 
-       @Nullable
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
+
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.income_fragment,container,false);
+        View v = inflater.inflate(R.layout.income_fragment, container, false);
+
         return v;
     }
 
@@ -51,28 +65,38 @@ public class IncomeFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView=(RecyclerView)view.findViewById(R.id.incomeView);
 
-        db=new DatabaseHelper(getActivity());
-        db.insertData("कपाल काटेको", 100);
-        db.insertData("कपाल कालो गरेको",200);
-        db.insertData("फेसवास गरेको",50);
-        db.insertData("कपाल रातो गरेको",120);
-        db.insertData("बच्चाको कपाल काटेको (१० बर्ष मुनिको",40);
-        db.insertData("फेसियल गरेको",200);
-        db.insertData("फचे ब्लीच गरेको",150);
-        db.insertData("दार्ही काटेको",30);
-        db.insertData("सेम्पु गरेको",60);
-        db.insertData("हेयर डराई गरेको",25);
+        recyclerView = (RecyclerView) view.findViewById(R.id.incomeView);
 
-        result=(TextView) view.findViewById(R.id.resulta);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (!preferences.getBoolean("firstTime", false)) {
 
-        incomeList=new ArrayList<>();
-        incomeAdapter=new IncomeAdapter(getActivity(),incomeList);
+            db = new DatabaseHelper(getActivity());
+            db.insertData("कपाल काटेको", 100);
+            db.insertData("कपाल कालो गरेको", 200);
+            db.insertData("फेसवास गरेको", 50);
+            db.insertData("कपाल रातो गरेको", 120);
+            db.insertData("बच्चाको कपाल काटेको (१० बर्ष मुनिको", 40);
+            db.insertData("फेसियल गरेको", 200);
+            db.insertData("फचे ब्लीच गरेको", 150);
+            db.insertData("दार्ही काटेको", 30);
+            db.insertData("सेम्पु गरेको", 60);
+            db.insertData("हेयर डराई गरेको", 25);
 
-        RecyclerView.LayoutManager mLayoutManager=new GridLayoutManager(getActivity(),3);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+
+        }
+
+        result = (TextView) view.findViewById(R.id.resulta);
+
+        incomeList = new ArrayList<>();
+        incomeAdapter = new IncomeAdapter(getActivity(), incomeList);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(5),true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(5), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(incomeAdapter);
 
@@ -82,10 +106,10 @@ public class IncomeFragment extends Fragment {
             public void onClick(View view, int position) {
 
                 IncomeDetail incomeDetail = incomeList.get(position);
-                int price=incomeDetail.getPrice();
+                int price = incomeDetail.getPrice();
                 result.setText(String.valueOf(price));
 
-                Toast.makeText(getActivity(), "onClick" +position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "onClick" + position, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -148,7 +172,7 @@ public class IncomeFragment extends Fragment {
     }
 
     private void prepareIncome() {
-        int[] incomes=new int[]{
+        int[] incomes = new int[]{
                 R.drawable.album1,
                 R.drawable.two,
                 R.drawable.album3,
@@ -238,5 +262,27 @@ public class IncomeFragment extends Fragment {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
+        menu.clear();
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.toolbar_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit:
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mainFrame, new IncomeEditFragment()).commit();
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("IncomeEdit");
+
+                break;
+            case R.id.result:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

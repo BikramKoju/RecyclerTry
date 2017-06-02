@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.bikramkoju.recyclertry.IncomeDetail;
+import com.example.bikramkoju.recyclertry.income.IncomeDetail;
 
 import java.util.ArrayList;
 
@@ -52,6 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void insertData(String title, int price){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+       // cv.put("image",image);
         cv.put("title",title);
         cv.put("price",price);
         db.insert(TABLENAME,null,cv);

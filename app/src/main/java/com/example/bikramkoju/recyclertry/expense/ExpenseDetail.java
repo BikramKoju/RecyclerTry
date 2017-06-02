@@ -1,23 +1,20 @@
-package com.example.bikramkoju.recyclertry;
-
-import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
+package com.example.bikramkoju.recyclertry.expense;
 
 /**
  * Created by Bikramkoju on 5/18/2017.
  */
 
-public class IncomeDetail {
+public class ExpenseDetail {
+
     private String name;
     private int price;
     private int thumbnail;
 
-
-
-    public IncomeDetail(){
+    public ExpenseDetail(){
 
     }
 
-    public IncomeDetail(String name, int price, int thumbnail){
+    public ExpenseDetail(String name, int price, int thumbnail){
         this.name=name;
         this.price=price;
         this.thumbnail=thumbnail;

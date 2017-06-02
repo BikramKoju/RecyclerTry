@@ -1,5 +1,6 @@
-package com.example.bikramkoju.recyclertry;
+package com.example.bikramkoju.recyclertry.expense;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -10,10 +11,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
 
 import java.util.ArrayList;
@@ -163,6 +168,20 @@ public class ExpenseFragment extends Fragment {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.edit:
+              /*  Intent intent=new Intent(getActivity(), EditValueExpense.class);
+                startActivity(intent);*/
+                Toast.makeText(getActivity(), "edit clicked", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.result:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
 
