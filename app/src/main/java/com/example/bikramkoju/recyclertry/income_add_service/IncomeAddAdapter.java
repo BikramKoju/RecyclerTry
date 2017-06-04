@@ -31,7 +31,6 @@ public class IncomeAddAdapter extends RecyclerView.Adapter<IncomeAddAdapter.MyVi
         public MyViewHolder(View itemView) {
             super(itemView);
             thumbnail = (ImageView) itemView.findViewById(R.id.addthumbnail);
-
         }
     }
 

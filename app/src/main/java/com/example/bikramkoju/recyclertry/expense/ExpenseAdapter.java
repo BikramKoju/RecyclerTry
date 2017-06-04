@@ -28,9 +28,9 @@ public class ExpenseAdapter  extends RecyclerView.Adapter<ExpenseAdapter.MyViewH
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.title);
-            count = (TextView) itemView.findViewById(R.id.count);
-            thumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
+            title = (TextView) itemView.findViewById(R.id.e_title);
+            count = (TextView) itemView.findViewById(R.id.e_count);
+            thumbnail = (ImageView) itemView.findViewById(R.id.e_thumbnail);
 
         }
     }
@@ -42,16 +42,17 @@ public class ExpenseAdapter  extends RecyclerView.Adapter<ExpenseAdapter.MyViewH
 
     @Override
     public ExpenseAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expense_card, parent, false);
-        return new ExpenseAdapter.MyViewHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expense_card_adapter, parent, false);
+        return new MyViewHolder(itemView);
 
     }
 
     @Override
-    public void onBindViewHolder(final ExpenseAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         ExpenseDetail expenseDetail=expenseDetailList.get(position);
+        holder.thumbnail.setImageResource(expenseDetail.getThumbnail());
         holder.title.setText(expenseDetail.getName());
-        holder.count.setText(expenseDetail.getPrice() + " rupees");
+        holder.count.setText("RS "+ expenseDetail.getPrice());
 
         //loading income cover using Glide library
         Glide.with(mContext).load(expenseDetail.getThumbnail()).into(holder.thumbnail);

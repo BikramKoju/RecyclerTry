@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bikramkoju.recyclertry.R;
+import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,21 +23,9 @@ public class IncomeAddFragment extends Fragment {
 
     RecyclerView recyclerView;
     IncomeAddAdapter incomeAddAdapter;
-    ArrayList<AddImage> addImageslist=new ArrayList<>();
+    ArrayList<AddImage> addImageslist;
+    DatabaseHelper db;
 
-    int[] images = new int[]{
-            R.drawable.album1,
-            R.drawable.two,
-            R.drawable.album3,
-            R.drawable.album4,
-            R.drawable.album5,
-            R.drawable.album6,
-            R.drawable.album7,
-            R.drawable.album8,
-            R.drawable.album9,
-            R.drawable.album10,
-            R.drawable.album11
-    };
 
     @Nullable
     @Override
@@ -51,11 +40,10 @@ public class IncomeAddFragment extends Fragment {
 
         recyclerView= (RecyclerView) view.findViewById(R.id.addlist);
 
-        AddImage a=new AddImage();
-        for (int i= 0; i<images.length;i++){
-            a.setAddimage(images[i]);
-            addImageslist.add(a);
-        }
+        db=new DatabaseHelper(getActivity());
+        addImageslist=db.getImage();
+
+      incomeAddAdapter=new IncomeAddAdapter(getActivity(),addImageslist);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
         recyclerView.setAdapter(new IncomeAddAdapter(getActivity(),addImageslist));

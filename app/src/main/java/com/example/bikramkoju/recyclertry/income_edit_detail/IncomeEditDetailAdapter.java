@@ -2,6 +2,7 @@ package com.example.bikramkoju.recyclertry.income_edit_detail;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,9 @@ public class IncomeEditDetailAdapter extends RecyclerView.Adapter<IncomeEditDeta
     public void onBindViewHolder(MyHolder holder, int position) {
         holder.title.setText(String.valueOf(myDataedit.get(position).getName()));
         holder.price.setText(String.valueOf(myDataedit.get(position).getPrice()));
+        holder.thumbnail.setImageResource(myDataedit.get(position).getThumbnail());
+
+        Log.i( "TAG", String.valueOf(myDataedit.get(position).getThumbnail()));
     }
 
     @Override

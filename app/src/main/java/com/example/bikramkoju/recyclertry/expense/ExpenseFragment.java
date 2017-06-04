@@ -1,17 +1,23 @@
 package com.example.bikramkoju.recyclertry.expense;
 
-import android.content.Intent;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,8 +26,10 @@ import android.widget.Toast;
 
 import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
+import com.example.bikramkoju.recyclertry.expense_edit_detail.ExpenseEditFragment;
+import com.example.bikramkoju.recyclertry.income.IncomeDetail;
+import com.example.bikramkoju.recyclertry.income.IncomeFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,10 +45,16 @@ public class ExpenseFragment extends Fragment {
 
     DatabaseHelper db;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.expenditure_fragment,container,false);
+        View v = inflater.inflate(R.layout.expenditure_fragment, container, false);
         return v;
     }
 
@@ -48,37 +62,30 @@ public class ExpenseFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView=(RecyclerView)view.findViewById(R.id.expenseView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.expenseView);
 
-        db=new DatabaseHelper(getActivity());
-        db.insertData2("कपाल काटेको", 100);
-        db.insertData2("कपाल कालो गरेको",200);
-        db.insertData2("फेसवास गरेको",50);
-        db.insertData2("कपाल रातो गरेको",120);
-        db.insertData2("बच्चाको कपाल काटेको (१० बर्ष मुनिको",40);
-        db.insertData2("फेसियल गरेको",200);
-        db.insertData2("फचे ब्लीच गरेको",150);
-        db.insertData2("दार्ही काटेको",30);
-        db.insertData2("सेम्पु गरेको",60);
-        db.insertData2("हेयर डराई गरेको",25);
+        result = (TextView) view.findViewById(R.id.resultb);
 
-        result=(TextView) view.findViewById(R.id.resultb);
+        db = new DatabaseHelper(getActivity());
+        expenseDetailList = db.getDataExpense();
 
 
-        expenseDetailList=new ArrayList<>();
-        expenseAdapter=new ExpenseAdapter(getActivity(),expenseDetailList);
+        expenseAdapter = new ExpenseAdapter(getActivity(), expenseDetailList);
 
-        RecyclerView.LayoutManager mLayoutManager=new GridLayoutManager(getActivity(),3);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(5),true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(5), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(expenseAdapter);
 
-        prepareIncome();
+
+
+        prepareExpense();
     }
 
-    private void prepareIncome() {
-        int[] incomes=new int[]{
+
+    private void prepareExpense() {
+       /* int[] incomes=new int[]{
                 R.drawable.album1,
                 R.drawable.two,
                 R.drawable.album3,
@@ -120,7 +127,7 @@ public class ExpenseFragment extends Fragment {
         expenseDetailList.add(a);
 
         a = new ExpenseDetail("हेयर डराई गरेको", 25, incomes[9]);
-        expenseDetailList.add(a);
+        expenseDetailList.add(a);*/
 
         expenseAdapter.notifyDataSetChanged();
     }
@@ -168,16 +175,27 @@ public class ExpenseFragment extends Fragment {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.toolbar_menu_f2, menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.edit:
-              /*  Intent intent=new Intent(getActivity(), EditValueExpense.class);
-                startActivity(intent);*/
-                Toast.makeText(getActivity(), "edit clicked", Toast.LENGTH_SHORT).show();
+        switch (item.getItemId()) {
+            case R.id.editf:
+               // Toast.makeText(getActivity(), "edit clicked of expense", Toast.LENGTH_SHORT).show();
+
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mainFrame, new ExpenseEditFragment()).commit();
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("ExpenseEdit");
+
 
                 break;
-            case R.id.result:
+            case R.id.resultf:
                 break;
         }
         return super.onOptionsItemSelected(item);

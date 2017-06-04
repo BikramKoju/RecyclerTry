@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -38,11 +39,11 @@ import java.util.List;
  */
 
 public class IncomeFragment extends Fragment {
+
+    DatabaseHelper db;
     RecyclerView recyclerView;
     private IncomeAdapter incomeAdapter;
     private List<IncomeDetail> incomeList;
-
-    DatabaseHelper db;
 
     private TextView result;
 
@@ -68,30 +69,11 @@ public class IncomeFragment extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.incomeView);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if (!preferences.getBoolean("firstTime", false)) {
-
-            db = new DatabaseHelper(getActivity());
-            db.insertData("कपाल काटेको", 100);
-            db.insertData("कपाल कालो गरेको", 200);
-            db.insertData("फेसवास गरेको", 50);
-            db.insertData("कपाल रातो गरेको", 120);
-            db.insertData("बच्चाको कपाल काटेको (१० बर्ष मुनिको", 40);
-            db.insertData("फेसियल गरेको", 200);
-            db.insertData("फचे ब्लीच गरेको", 150);
-            db.insertData("दार्ही काटेको", 30);
-            db.insertData("सेम्पु गरेको", 60);
-            db.insertData("हेयर डराई गरेको", 25);
-
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("firstTime", true);
-            editor.commit();
-
-        }
-
         result = (TextView) view.findViewById(R.id.resulta);
 
-        incomeList = new ArrayList<>();
+        db = new DatabaseHelper(getActivity());
+        incomeList = db.getData();
+
         incomeAdapter = new IncomeAdapter(getActivity(), incomeList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
@@ -119,6 +101,7 @@ public class IncomeFragment extends Fragment {
 
             }
         }));
+
         prepareIncome();
     }
 
@@ -128,7 +111,7 @@ public class IncomeFragment extends Fragment {
         public void onLongClick(View view, int position);
     }
 
-    static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
+    public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
         private GestureDetector gestureDetector;
         private ClickListener clickListener;
@@ -172,7 +155,8 @@ public class IncomeFragment extends Fragment {
     }
 
     private void prepareIncome() {
-        int[] incomes = new int[]{
+
+        /*int[] incomes = new int[]{
                 R.drawable.album1,
                 R.drawable.two,
                 R.drawable.album3,
@@ -214,7 +198,7 @@ public class IncomeFragment extends Fragment {
         incomeList.add(a);
 
         a = new IncomeDetail("हेयर डराई गरेको", 25, incomes[9]);
-        incomeList.add(a);
+        incomeList.add(a);*/
 
         incomeAdapter.notifyDataSetChanged();
     }
