@@ -42,8 +42,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "title TEXT," +
                 "price INTEGER)");
 
-        db.execSQL("create table if not exixts " + IMAGETABLE + "(id integer primary key autoincrement," +
-                "image INTEGER)");
+       /* db.execSQL("create table if not exixts " + IMAGETABLE + "(id integer primary key autoincrement," +
+                "image INTEGER)");*/
 
         // db.execSQL("insert into " +TABLENAME +" values(null,abc,12)");
 
@@ -53,18 +53,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists " + TABLENAME);
         db.execSQL("drop table if exists " + TABLENAME2);
-        db.execSQL("drop table if exists " + IMAGETABLE);
+       // db.execSQL("drop table if exists " + IMAGETABLE);
 
         onCreate(db);
 
     }
 
-    public void insertImage(int image){
+    /*public void insertImage(int image){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put("image",image);
         db.insert(IMAGETABLE,null,contentValues);
-    }
+    }*/
 
     public void insertData(int image, String title, int price) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -84,7 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLENAME2, null, cv);
     }
 
-    public ArrayList<AddImage> getImage(){
+   /* public ArrayList<AddImage> getImage(){
         SQLiteDatabase db =this.getReadableDatabase();
         Cursor cursor=db.rawQuery("Select * from " + IMAGETABLE, null);
         if (cursor.getCount() !=0){
@@ -101,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return myImageData;
     }
-
+*/
     public ArrayList<IncomeDetail> getData() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from " + TABLENAME, null);

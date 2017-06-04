@@ -36,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         saveDataExpense();
 
-        saveImageData();
+      //  saveImageData();
 
     }
 
-    private void saveImageData() {
+   /* private void saveImageData() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if (!preferences.getBoolean("firstTimeImage", false)) {
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
         }
 
-    }
+    }*/
 
     private void saveDataExpense() {
 
