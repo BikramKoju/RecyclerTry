@@ -71,7 +71,7 @@ public class IncomeEditFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.add:
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.mainFrame, new IncomeAddFragment()).commit();
+                fragmentTransaction.replace(R.id.mainFrame, new IncomeAddFragment()).addToBackStack(null).commit();
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("ADD Services");
 
                 break;

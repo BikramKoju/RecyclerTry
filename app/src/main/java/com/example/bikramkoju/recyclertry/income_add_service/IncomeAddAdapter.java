@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.bikramkoju.recyclertry.R;
@@ -48,11 +49,29 @@ public class IncomeAddAdapter extends RecyclerView.Adapter<IncomeAddAdapter.MyVi
     }
 
     @Override
-    public void onBindViewHolder(IncomeAddAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(IncomeAddAdapter.MyViewHolder holder, final int position) {
+
+       // AddImage addImage= addImages.get(position);
+        //holder.thumbnail.setImageResource(addImage.getAddimage());
+        holder.thumbnail.setImageResource(addImages.get(position).getAddimage());
+
+       /* holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(mContext, "Item clicked at "+ position, Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+
+
+
+
+
        // AddImage addImage=addImages.get(position);
 
-      //  Glide.with(mContext).load(addImage.getAddimage()).into(holder.thumbnail);
-        holder.thumbnail.setImageResource(addImages.get(position).getAddimage());
+      // Glide.with(mContext).load(addImage.getAddimage()).into(holder.thumbnail);
+
 
     }
 

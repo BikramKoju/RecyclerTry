@@ -50,6 +50,7 @@ class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         IncomeDetail incomeDetail = incomeDetailList.get(position);
+
         holder.thumbnail.setImageResource(incomeDetail.getThumbnail());
         holder.title.setText(incomeDetail.getName());
         holder.count.setText("RS " + incomeDetail.getPrice());
