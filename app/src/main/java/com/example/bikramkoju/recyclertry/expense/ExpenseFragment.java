@@ -78,6 +78,24 @@ public class ExpenseFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(expenseAdapter);
 
+        recyclerView.addOnItemTouchListener(new IncomeFragment.RecyclerTouchListener(getActivity(), recyclerView, new IncomeFragment.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+                ExpenseDetail expenseDetail = expenseDetailList.get(position);
+                int price = expenseDetail.getPrice();
+                result.setText(String.valueOf(price));
+
+               // Toast.makeText(getActivity(), "onClick" + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Toast.makeText(getActivity(), "you long clicked " +expenseDetailList.get(position).getName(), Toast.LENGTH_SHORT).show();
+
+            }
+        }));
+
 
 
         prepareExpense();

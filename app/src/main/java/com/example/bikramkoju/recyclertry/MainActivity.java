@@ -36,32 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         saveDataExpense();
 
-      //  saveImageData();
-
     }
-
-   /* private void saveImageData() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if (!preferences.getBoolean("firstTimeImage", false)) {
-
-            db = new DatabaseHelper(getApplicationContext());
-            db.insertImage(R.drawable.album1);
-            db.insertImage(R.drawable.album1);
-            db.insertImage(R.drawable.album1);
-            db.insertImage(R.drawable.album1);
-            db.insertImage(R.drawable.album1);
-            db.insertImage(R.drawable.album1);
-            db.insertImage(R.drawable.album1);
-            db.insertImage(R.drawable.album1);
-            db.insertImage(R.drawable.album1);
-            db.insertImage(R.drawable.album1);
-
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("firstTimeImage", true);
-            editor.commit();
-        }
-
-    }*/
 
     private void saveDataExpense() {
 
@@ -109,40 +84,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
-
-   /* @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.edit:
-                Intent intent=new Intent(MainActivity.this, EditValue.class);
-                startActivity(intent);
-                break;
-            case R.id.result:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
-//
-//   @Override
-//   public boolean onOptionsItemSelected(MenuItem item) {
-//       switch (item.getItemId()){
-//           case R.id.edit:
-//               ft=getSupportFragmentManager().beginTransaction();
-//               ft.replace(R.id.mainFrame,new IncomeEditFragment()).commit();
-//               /* Intent intent=new Intent(getActivity(), EditValue.class);
-//                startActivity(intent);*/
-//               break;
-//           case R.id.result:
-//               break;
-//       }
-//
-//       return super.onOptionsItemSelected(item);
-//   }
 }

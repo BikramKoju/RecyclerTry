@@ -57,22 +57,6 @@ public class ExpenseAdapter  extends RecyclerView.Adapter<ExpenseAdapter.MyViewH
         //loading income cover using Glide library
         Glide.with(mContext).load(expenseDetail.getThumbnail()).into(holder.thumbnail);
 
-
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(mContext, "Item clicked at "+ position, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        holder.title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "title is clicked", Toast.LENGTH_LONG).show();
-            }
-        });
-
     }
     @Override
     public int getItemCount() {

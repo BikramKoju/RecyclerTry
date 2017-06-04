@@ -55,23 +55,6 @@ public class IncomeAddAdapter extends RecyclerView.Adapter<IncomeAddAdapter.MyVi
         //holder.thumbnail.setImageResource(addImage.getAddimage());
         holder.thumbnail.setImageResource(addImages.get(position).getAddimage());
 
-       /* holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(mContext, "Item clicked at "+ position, Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-
-
-
-
-
-       // AddImage addImage=addImages.get(position);
-
-      // Glide.with(mContext).load(addImage.getAddimage()).into(holder.thumbnail);
-
 
     }
 

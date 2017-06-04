@@ -97,7 +97,7 @@ public class IncomeFragment extends Fragment {
 
             @Override
             public void onLongClick(View view, int position) {
-                Toast.makeText(getActivity(), "onLongCleck", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "You long clicked "+incomeList.get(position).getName(), Toast.LENGTH_SHORT).show();
 
             }
         }));

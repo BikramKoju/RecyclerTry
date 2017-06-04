@@ -32,9 +32,10 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_name"
+            android:maxLines="1"
+            android:inputType="text"
+            android:id="@+id/add_name"
             android:layout_marginLeft="5dp"
-
             android:hint="Name of service"
             android:layout_toRightOf="@+id/title"/>
 
@@ -53,9 +54,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:id="@+id/add_price"
+            android:maxLines="1"
+            android:inputType="number"
             android:hint="Price"
             android:layout_toRightOf="@+id/price"
-            android:layout_below="@id/edit_name"/>
+            android:layout_below="@id/add_name"/>
 
     </RelativeLayout>
 

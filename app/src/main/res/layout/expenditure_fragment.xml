@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <TextView
-            android:id="@+id/resultb"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="Result"
-            android:textColor="#58de23"
-            android:textSize="50dp"
-            android:paddingBottom="10dp"
+            android:orientation="horizontal">
 
-            />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/expenseView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RS "
+                android:textColor="#58de23"
+                android:textSize="50dp" />
 
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/resultb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:textColor="#58de23"
+                android:textSize="50dp"
+                />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/expenseView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+
+
     </LinearLayout>
+</LinearLayout>
