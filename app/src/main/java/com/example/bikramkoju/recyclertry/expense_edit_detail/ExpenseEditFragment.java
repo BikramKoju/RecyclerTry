@@ -3,17 +3,21 @@ package com.example.bikramkoju.recyclertry.expense_edit_detail;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
 import com.example.bikramkoju.recyclertry.expense.ExpenseDetail;
+import com.example.bikramkoju.recyclertry.expense_add_service.ExpenseAddFragment;
 
 import java.util.ArrayList;
 
@@ -56,6 +60,19 @@ public class ExpenseEditFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
        menu.clear();
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.toolbar_menu_f2,menu);
+        inflater.inflate(R.menu.toolbar_menu_adde,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+       switch (item.getItemId()){
+           case R.id.adde:
+               FragmentTransaction fragmentTransaction=getActivity().getSupportFragmentManager().beginTransaction();
+               fragmentTransaction.replace(R.id.mainFrame, new ExpenseAddFragment()).addToBackStack(null).commit();
+               ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("ADD Expenses");
+
+               break;
+       }
+        return super.onOptionsItemSelected(item);
     }
 }
