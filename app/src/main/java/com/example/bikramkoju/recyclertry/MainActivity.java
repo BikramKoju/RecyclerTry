@@ -45,15 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
             db = new DatabaseHelper(getApplicationContext());
             db.insertData2(R.drawable.album1, "कपाल काटेको", 100);
-            db.insertData2(R.drawable.album1, "कपाल कालो गरेको", 200);
-            db.insertData2(R.drawable.album1, "फेसवास गरेको", 50);
-            db.insertData2(R.drawable.album3, "कपाल रातो गरेको", 120);
-            db.insertData2(R.drawable.album3, "बच्चाको कपाल काटेको (१० बर्ष मुनिको", 40);
-            db.insertData2(R.drawable.album3, "फेसियल गरेको", 200);
-            db.insertData2(R.drawable.album3, "फचे ब्लीच गरेको", 150);
-            db.insertData2(R.drawable.album3, "दार्ही काटेको", 30);
-            db.insertData2(R.drawable.album3, "सेम्पु गरेको", 60);
-            db.insertData2(R.drawable.album3, "हेयर डराई गरेको", 25);
+            db.insertData2(R.drawable.album3, "कपाल कालो गरेको", 200);
+            db.insertData2(R.drawable.album4, "फेसवास गरेको", 50);
+            db.insertData2(R.drawable.album5, "कपाल रातो गरेको", 120);
+            db.insertData2(R.drawable.album6, "बच्चाको कपाल काटेको (१० बर्ष मुनिको", 40);
+            db.insertData2(R.drawable.album7, "फेसियल गरेको", 200);
+            db.insertData2(R.drawable.album8, "फचे ब्लीच गरेको", 150);
+            db.insertData2(R.drawable.album9, "दार्ही काटेको", 30);
+            db.insertData2(R.drawable.album1, "सेम्पु गरेको", 60);
+            db.insertData2(R.drawable.album10, "हेयर डराई गरेको", 25);
 
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("firstTimeExpense", true);
@@ -67,15 +67,15 @@ public class MainActivity extends AppCompatActivity {
 
             db = new DatabaseHelper(getApplicationContext());
             db.insertData(R.drawable.album1, "कपाल काटेको", 100);
-            db.insertData(R.drawable.album1, "कपाल कालो गरेको", 200);
-            db.insertData(R.drawable.album1, "फेसवास गरेको", 50);
-            db.insertData(R.drawable.album1, "कपाल रातो गरेको", 120);
-            db.insertData(R.drawable.album1, "बच्चाको कपाल काटेको (१० बर्ष मुनिको", 40);
-            db.insertData(R.drawable.album1, "फेसियल गरेको", 200);
-            db.insertData(R.drawable.album1, "फचे ब्लीच गरेको", 150);
-            db.insertData(R.drawable.album1, "दार्ही काटेको", 30);
+            db.insertData(R.drawable.album3, "कपाल कालो गरेको", 200);
+            db.insertData(R.drawable.album4, "फेसवास गरेको", 50);
+            db.insertData(R.drawable.album5, "कपाल रातो गरेको", 120);
+            db.insertData(R.drawable.album6, "बच्चाको कपाल काटेको (१० बर्ष मुनिको", 40);
+            db.insertData(R.drawable.album7, "फेसियल गरेको", 200);
+            db.insertData(R.drawable.album8, "फचे ब्लीच गरेको", 150);
+            db.insertData(R.drawable.album9, "दार्ही काटेको", 30);
             db.insertData(R.drawable.album1, "सेम्पु गरेको", 60);
-            db.insertData(R.drawable.album1, "हेयर डराई गरेको", 25);
+            db.insertData(R.drawable.album10, "हेयर डराई गरेको", 25);
 
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("firstTimeIncome", true);

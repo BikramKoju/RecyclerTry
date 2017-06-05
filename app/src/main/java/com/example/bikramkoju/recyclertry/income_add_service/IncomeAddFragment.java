@@ -44,16 +44,16 @@ public class IncomeAddFragment extends Fragment {
 
     int[] images = new int[]{
             R.drawable.album1,
+            R.drawable.album3,
+            R.drawable.album4,
+            R.drawable.album5,
+            R.drawable.album6,
+            R.drawable.album7,
+            R.drawable.album8,
+            R.drawable.album9,
             R.drawable.album1,
-            R.drawable.album1,
-            R.drawable.album1,
-            R.drawable.album1,
-            R.drawable.album1,
-            R.drawable.album1,
-            R.drawable.album1,
-            R.drawable.album1,
-            R.drawable.album1,
-            R.drawable.album1,
+            R.drawable.album10,
+            R.drawable.two,
     };
 
     @Override
@@ -137,8 +137,15 @@ public class IncomeAddFragment extends Fragment {
 
 //                Toast.makeText(getActivity(), ""+name + price , Toast.LENGTH_SHORT).show();
 
-                price= Integer.parseInt(edprice.getText().toString());
-                name=edname.getText().toString();
+
+                try {
+                    price= Integer.parseInt(edprice.getText().toString());
+                    name=edname.getText().toString();
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getActivity(), "please fill in the info", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+
+                }
 
 
                 //System.out.println(edname.getText().toString());

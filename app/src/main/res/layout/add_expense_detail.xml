@@ -8,6 +8,6 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:src="@mipmap/ic_launcher"
-        android:id="@+id/addthumbnailexp"/>
+        android:id="@+id/addthumbnailexp"/>/
 
 </android.support.v7.widget.CardView>
