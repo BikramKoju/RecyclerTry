@@ -57,8 +57,6 @@ class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.MyViewHolder> {
 
         //loading income cover using Glide library
        Glide.with(mContext).load(incomeDetail.getThumbnail()).into(holder.thumbnail);
-
-
     }
 
 

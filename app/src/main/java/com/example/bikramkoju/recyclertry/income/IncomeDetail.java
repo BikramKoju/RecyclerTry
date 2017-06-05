@@ -10,15 +10,25 @@ public class IncomeDetail {
     private String name;
     private int price;
     private int thumbnail;
+    private int id;
 
     public IncomeDetail(){
 
     }
 
-    public IncomeDetail(String name, int price, int thumbnail){
+    public IncomeDetail(String name, int price, int thumbnail, int id){
+        this.id=id;
         this.name=name;
         this.price=price;
         this.thumbnail=thumbnail;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

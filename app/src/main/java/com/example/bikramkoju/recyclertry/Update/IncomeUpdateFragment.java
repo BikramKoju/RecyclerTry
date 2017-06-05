@@ -1,4 +1,4 @@
-package com.example.bikramkoju.recyclertry.income_add_service;
+package com.example.bikramkoju.recyclertry.Update;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,19 +18,20 @@ import android.widget.Toast;
 
 import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
-import com.example.bikramkoju.recyclertry.income.IncomeDetail;
 import com.example.bikramkoju.recyclertry.income.IncomeFragment;
+import com.example.bikramkoju.recyclertry.income_add_service.AddImage;
+import com.example.bikramkoju.recyclertry.income_add_service.IncomeAddAdapter;
 import com.example.bikramkoju.recyclertry.income_edit_detail.IncomeEditFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by Bikramkoju on 6/2/2017.
+ * Created by Bikramkoju on 6/5/2017.
  */
 
-public class IncomeAddFragment extends Fragment {
+public class IncomeUpdateFragment extends Fragment {
 
+    int ida;
     ImageView imageView;
     EditText edname, edprice;
     DatabaseHelper db;
@@ -65,7 +66,9 @@ public class IncomeAddFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_income_service, container, false);
+        View view = inflater.inflate(R.layout.income_update_detail, container, false);
+
+
         return view;
     }
 
@@ -73,27 +76,24 @@ public class IncomeAddFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        try {
-            nameValue= (String) getArguments().get("name");
-            priceValue= (int) getArguments().get("price");
-            imageValue= (int) getArguments().get("imgs");
-            idValue= (int) getArguments().get("id");
-
-            edname.setText(nameValue);
-            edprice.setText(priceValue);
-            imageView.setImageResource(imageValue);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        edname = (EditText) view.findViewById(R.id.update_name);
+        edprice = (EditText) view.findViewById(R.id.update_price);
+        imageView = (ImageView) view.findViewById(R.id.update_thumbnail);
 
 
-        edname = (EditText) view.findViewById(R.id.add_name);
-        edprice = (EditText) view.findViewById(R.id.add_price);
-        imageView = (ImageView) view.findViewById(R.id.add_thumbnail);
+        nameValue= getArguments().getString("name");
+        priceValue=  getArguments().getInt("price");
+        imageValue= getArguments().getInt("imgs");
+        idValue=  getArguments().getInt("id");
+
+        edname.setText(String.valueOf(nameValue));
+        edprice.setText(String.valueOf(priceValue));
+       imageView.setImageResource(imageValue);
+        imageView.setTag(imageValue);
 
 
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.addlist);
+        recyclerView = (RecyclerView) view.findViewById(R.id.update_incomelist);
 
 
         incomeAddAdapter = new IncomeAddAdapter(getActivity(), addImageslist);
@@ -108,8 +108,6 @@ public class IncomeAddFragment extends Fragment {
 
                 imageView.setTag(images[position]);
                 imageView.setImageResource(images[position]);
-//                System.out.println(imageView.getTag());
-
                 imgRes = (int) imageView.getTag();
                 Toast.makeText(getActivity(), "addedonClick" + position, Toast.LENGTH_SHORT).show();
 
@@ -165,33 +163,16 @@ public class IncomeAddFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.save:
-                //Toast.makeText(getActivity(), "saveed", Toast.LENGTH_SHORT).show();
-
-//                Toast.makeText(getActivity(), ""+name + price , Toast.LENGTH_SHORT).show();
-
-
-                try {
-                    price = Integer.parseInt(edprice.getText().toString());
-                    name = edname.getText().toString();
-                } catch (NumberFormatException e) {
-                    Toast.makeText(getActivity(), "please fill in the info", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-
-                }
-
-
-                //System.out.println(edname.getText().toString());
-                //System.out.println(edprice.getText().toString());
-                //System.out.println(imageView.getTag());
-                //  int image= imageView.getImageAlpha();
-
-                db = new DatabaseHelper(getActivity());
-                db.insertData(imgRes, name, price);
-
+                db=new DatabaseHelper(getContext());
+                db.updateData(edname.getText().toString(),
+                        (Integer) imageView.getTag(),
+                        Integer.parseInt(edprice.getText().toString()),
+                        idValue);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.mainFrame, new IncomeEditFragment()).addToBackStack(null).commit();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

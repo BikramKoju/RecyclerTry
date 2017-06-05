@@ -1,6 +1,5 @@
 package com.example.bikramkoju.recyclertry.expense;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -12,12 +11,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -27,8 +24,8 @@ import android.widget.Toast;
 import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
 import com.example.bikramkoju.recyclertry.expense_edit_detail.ExpenseEditFragment;
-import com.example.bikramkoju.recyclertry.income.IncomeDetail;
 import com.example.bikramkoju.recyclertry.income.IncomeFragment;
+import com.example.bikramkoju.recyclertry.result.NewResult;
 
 import java.util.List;
 
@@ -40,6 +37,8 @@ public class ExpenseFragment extends Fragment {
     RecyclerView recyclerView;
     private ExpenseAdapter expenseAdapter;
     private List<ExpenseDetail> expenseDetailList;
+
+    public static final int fid=1;
 
     TextView result;
 
@@ -86,6 +85,11 @@ public class ExpenseFragment extends Fragment {
                 int price = expenseDetail.getPrice();
                 result.setText(String.valueOf(price));
 
+                String title=expenseDetail.getName();
+                int image=expenseDetail.getThumbnail();
+
+
+                db.insertResult(image,title,price,fid);
                // Toast.makeText(getActivity(), "onClick" + position, Toast.LENGTH_SHORT).show();
             }
 
@@ -208,12 +212,16 @@ public class ExpenseFragment extends Fragment {
                // Toast.makeText(getActivity(), "edit clicked of expense", Toast.LENGTH_SHORT).show();
 
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.mainFrame, new ExpenseEditFragment()).commit();
+                fragmentTransaction.replace(R.id.mainFrame, new ExpenseEditFragment()).addToBackStack(null).commit();
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("ExpenseEdit");
 
 
                 break;
             case R.id.resultf:
+                FragmentTransaction fragmentTransaction1=getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction1.replace(R.id.mainFrame, new NewResult()).addToBackStack(null).commit();
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Results");
+
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
 import com.example.bikramkoju.recyclertry.income_edit_detail.IncomeEditFragment;
+import com.example.bikramkoju.recyclertry.result.NewResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class IncomeFragment extends Fragment {
     RecyclerView recyclerView;
     private IncomeAdapter incomeAdapter;
     private List<IncomeDetail> incomeList;
+    public static final int fid=2;
 
     private TextView result;
 
@@ -90,6 +92,11 @@ public class IncomeFragment extends Fragment {
                 IncomeDetail incomeDetail = incomeList.get(position);
                 int price = incomeDetail.getPrice();
                 result.setText(String.valueOf(price));
+
+              String title=incomeDetail.getName();
+                int image=incomeDetail.getThumbnail();
+
+                db.insertResult(image,title,price,fid);
 
                 Toast.makeText(getActivity(), "onClick" + position, Toast.LENGTH_SHORT).show();
 
@@ -264,6 +271,9 @@ public class IncomeFragment extends Fragment {
 
                 break;
             case R.id.result:
+                FragmentTransaction fragmentTransaction1=getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction1.replace(R.id.mainFrame, new NewResult()).addToBackStack(null).commit();
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Results");
                 break;
         }
 

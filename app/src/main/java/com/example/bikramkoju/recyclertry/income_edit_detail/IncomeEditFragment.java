@@ -13,11 +13,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
 import com.example.bikramkoju.recyclertry.income.IncomeDetail;
+import com.example.bikramkoju.recyclertry.income.IncomeFragment;
 import com.example.bikramkoju.recyclertry.income_add_service.IncomeAddFragment;
 
 import java.util.ArrayList;
@@ -50,12 +52,53 @@ public class IncomeEditFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.editlist);
+       /* recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        db = new DatabaseHelper(getActivity());
+        mydata = db.getData();
+
+        recyclerView.setAdapter(new IncomeEditDetailAdapter(getContext(), mydata));
+
+       */ recyclerView.addOnItemTouchListener(new IncomeFragment.RecyclerTouchListener(getActivity(), recyclerView, new IncomeFragment.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+
+
+
+
+                Toast.makeText(getActivity(), "addedonClick" + position, Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                db.removeDataIncome(mydata.get(position).getId());
+                System.out.println(mydata.get(position).getId());
+                onResume();
+
+                //Toast.makeText(getActivity(), "onLongCleck", Toast.LENGTH_SHORT).show();
+
+            }
+        }));
+
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         db = new DatabaseHelper(getActivity());
         mydata = db.getData();
 
         recyclerView.setAdapter(new IncomeEditDetailAdapter(getContext(), mydata));
+
+
+
     }
 
     @Override

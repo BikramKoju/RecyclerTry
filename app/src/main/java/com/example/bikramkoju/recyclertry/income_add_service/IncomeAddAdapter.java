@@ -35,11 +35,9 @@ public class IncomeAddAdapter extends RecyclerView.Adapter<IncomeAddAdapter.MyVi
         }
     }
 
-
     public IncomeAddAdapter(Context context, ArrayList<AddImage> addImagess) {
         mContext=context;
         addImages=addImagess;
-
     }
 
     @Override
@@ -50,10 +48,13 @@ public class IncomeAddAdapter extends RecyclerView.Adapter<IncomeAddAdapter.MyVi
 
     @Override
     public void onBindViewHolder(IncomeAddAdapter.MyViewHolder holder, final int position) {
-
-       // AddImage addImage= addImages.get(position);
+        AddImage addImage= addImages.get(position);
         //holder.thumbnail.setImageResource(addImage.getAddimage());
-        holder.thumbnail.setImageResource(addImages.get(position).getAddimage());
+       // holder.thumbnail.setImageResource(addImages.get(position).getAddimage());
+        holder.thumbnail.setImageResource(addImage.getAddimage());
+
+        Glide.with(mContext).load(addImage.getAddimage()).into(holder.thumbnail);
+
 
 
     }

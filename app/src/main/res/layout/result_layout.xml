@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Income"
+            android:layout_gravity="left"
+            android:layout_marginLeft="25dp"
+            android:textSize="25dp"
+
+            android:id="@+id/income"/>
+
+        <TextView
+            android:id="@+id/totalIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="25dp"
+            android:text="RS"
+            android:layout_below="@+id/income"
+            android:layout_toStartOf="@+id/expense" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/expense"
+            android:text="Expenses"
+            android:textSize="25dp"
+            android:layout_toRightOf="@+id/income"
+            android:layout_marginLeft="100dp"
+            />
+
+        <TextView
+            android:id="@+id/totalExpences"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:text="RS"
+            android:layout_toRightOf="@id/totalIncome"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/expense"
+            android:layout_alignEnd="@+id/expense" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/result_recycle"
+        android:layout_marginTop="20dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

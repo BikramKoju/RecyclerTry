@@ -1,6 +1,9 @@
 package com.example.bikramkoju.recyclertry.expense_edit_detail;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.expense.ExpenseDetail;
+import com.example.bikramkoju.recyclertry.expense_add_service.ExpenseAddFragment;
 
 import java.util.ArrayList;
 
@@ -57,6 +61,24 @@ public class ExpenseEditDetailAdapter extends RecyclerView.Adapter<ExpenseEditDe
             title= (TextView) itemView.findViewById(R.id.edit_title_expense);
             price= (TextView) itemView.findViewById(R.id.edit_price_expense);
             thumbnail= (ImageView) itemView.findViewById(R.id.edit_thumbnail_expense);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int position=getAdapterPosition();
+                    ExpenseAddFragment IAF=new ExpenseAddFragment();
+                    Bundle args=new Bundle();
+                    args.putInt("id",myDataedit.get(position).getId());
+                    args.putString("name",myDataedit.get(position).getName());
+                    args.putInt("price",myDataedit.get(position).getPrice());
+                    args.putInt("imgs",myDataedit.get(position).getThumbnail());
+                    IAF.setArguments(args);
+
+                    FragmentTransaction ft=((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.mainFrame,IAF).addToBackStack(null).commit();
+
+                }
+            });
         }
     }
 }
