@@ -25,10 +25,17 @@ import com.example.bikramkoju.recyclertry.income.IncomeFragment;
 public class BarbarAppFragment extends Fragment {
     PagerSlidingTabStrip pagerSlidingTabStrip;
     ViewPager viewPager;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.barber_layout,container,false);
+        View v = inflater.inflate(R.layout.barber_layout, container, false);
         return v;
     }
 
@@ -36,25 +43,27 @@ public class BarbarAppFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        pagerSlidingTabStrip=(PagerSlidingTabStrip) view.findViewById(R.id.pager_tabs);
-        viewPager=(ViewPager)view.findViewById(R.id.viewpager);
 
-        FragmentManager fragmentManager=getChildFragmentManager();
-        viewPager.setAdapter(new MyAdapter(getActivity(),fragmentManager));
+        pagerSlidingTabStrip = (PagerSlidingTabStrip) view.findViewById(R.id.pager_tabs);
+        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+
+        FragmentManager fragmentManager = getChildFragmentManager();
+        viewPager.setAdapter(new MyAdapter(getActivity(), fragmentManager));
         pagerSlidingTabStrip.setViewPager(viewPager);
     }
 
     private class MyAdapter extends FragmentStatePagerAdapter {
         Context c;
+
         public MyAdapter(Context mainActivity, FragmentManager fragmentManager) {
             super(fragmentManager);
-            c=mainActivity;
+            c = mainActivity;
         }
 
 
         @Override
         public Fragment getItem(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
                     return new IncomeFragment();
                 case 1:
@@ -70,7 +79,7 @@ public class BarbarAppFragment extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
                     return "Income";
                 case 1:

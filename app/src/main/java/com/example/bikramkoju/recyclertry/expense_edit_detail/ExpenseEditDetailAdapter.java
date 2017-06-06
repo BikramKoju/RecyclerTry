@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bikramkoju.recyclertry.R;
+import com.example.bikramkoju.recyclertry.Update.ExpenseUpdateFragment;
 import com.example.bikramkoju.recyclertry.expense.ExpenseDetail;
 import com.example.bikramkoju.recyclertry.expense_add_service.ExpenseAddFragment;
 
@@ -66,16 +68,18 @@ public class ExpenseEditDetailAdapter extends RecyclerView.Adapter<ExpenseEditDe
                 public void onClick(View v) {
 
                     int position=getAdapterPosition();
-                    ExpenseAddFragment IAF=new ExpenseAddFragment();
+                    ExpenseUpdateFragment expenseUpdateFragment=new ExpenseUpdateFragment();
                     Bundle args=new Bundle();
                     args.putInt("id",myDataedit.get(position).getId());
                     args.putString("name",myDataedit.get(position).getName());
                     args.putInt("price",myDataedit.get(position).getPrice());
                     args.putInt("imgs",myDataedit.get(position).getThumbnail());
-                    IAF.setArguments(args);
+                    expenseUpdateFragment.setArguments(args);
 
                     FragmentTransaction ft=((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.mainFrame,IAF).addToBackStack(null).commit();
+                    ft.replace(R.id.mainFrame,expenseUpdateFragment).addToBackStack(null).commit();
+
+                    ((AppCompatActivity) v.getContext()).getSupportActionBar().setTitle("UpdateExpense");
 
                 }
             });

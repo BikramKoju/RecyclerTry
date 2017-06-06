@@ -87,10 +87,8 @@ public class ExpenseFragment extends Fragment {
 
                 String title=expenseDetail.getName();
                 int image=expenseDetail.getThumbnail();
-
-
                 db.insertResult(image,title,price,fid);
-               // Toast.makeText(getActivity(), "onClick" + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Expense Added " + "RS " +  expenseDetail.getPrice(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -202,13 +200,13 @@ public class ExpenseFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.toolbar_menu_f2, menu);
+        inflater.inflate(R.menu.toolbar_menu, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.editf:
+            case R.id.edit:
                // Toast.makeText(getActivity(), "edit clicked of expense", Toast.LENGTH_SHORT).show();
 
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -217,10 +215,10 @@ public class ExpenseFragment extends Fragment {
 
 
                 break;
-            case R.id.resultf:
+            case R.id.result:
                 FragmentTransaction fragmentTransaction1=getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction1.replace(R.id.mainFrame, new NewResult()).addToBackStack(null).commit();
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Results");
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("ResultsExp");
 
                 break;
         }

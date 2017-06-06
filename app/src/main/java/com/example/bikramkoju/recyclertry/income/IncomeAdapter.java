@@ -32,7 +32,6 @@ class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.MyViewHolder> {
             title = (TextView) itemView.findViewById(R.id.title);
             count = (TextView) itemView.findViewById(R.id.counti);
             thumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
-
         }
     }
 

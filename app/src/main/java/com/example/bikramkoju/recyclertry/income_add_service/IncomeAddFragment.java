@@ -165,10 +165,6 @@ public class IncomeAddFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.save:
-                //Toast.makeText(getActivity(), "saveed", Toast.LENGTH_SHORT).show();
-
-//                Toast.makeText(getActivity(), ""+name + price , Toast.LENGTH_SHORT).show();
-
 
                 try {
                     price = Integer.parseInt(edprice.getText().toString());
@@ -178,7 +174,6 @@ public class IncomeAddFragment extends Fragment {
                     e.printStackTrace();
 
                 }
-
 
                 //System.out.println(edname.getText().toString());
                 //System.out.println(edprice.getText().toString());

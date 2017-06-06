@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.bikramkoju.recyclertry.R;
 import com.example.bikramkoju.recyclertry.database.DatabaseHelper;
+import com.example.bikramkoju.recyclertry.expense_edit_detail.ExpenseEditFragment;
 import com.example.bikramkoju.recyclertry.income.IncomeFragment;
 import com.example.bikramkoju.recyclertry.income_add_service.AddImage;
 import com.example.bikramkoju.recyclertry.income_add_service.IncomeAddAdapter;
@@ -66,7 +67,7 @@ public class ExpenseUpdateFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.income_update_detail, container, false);
+        View view = inflater.inflate(R.layout.expense_udpate_detail, container, false);
         return view;
     }
 
@@ -74,9 +75,9 @@ public class ExpenseUpdateFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        edname = (EditText) view.findViewById(R.id.update_name);
-        edprice = (EditText) view.findViewById(R.id.update_price);
-        imageView = (ImageView) view.findViewById(R.id.update_thumbnail);
+        edname = (EditText) view.findViewById(R.id.update_name_exp);
+        edprice = (EditText) view.findViewById(R.id.update_price_exp);
+        imageView = (ImageView) view.findViewById(R.id.update_thumbnail_exp);
 
 
         nameValue= getArguments().getString("name");
@@ -91,7 +92,7 @@ public class ExpenseUpdateFragment extends Fragment {
 
 
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.update_incomelist);
+        recyclerView = (RecyclerView) view.findViewById(R.id.update_expenselist);
 
 
         incomeAddAdapter = new IncomeAddAdapter(getActivity(), addImageslist);
@@ -167,7 +168,7 @@ public class ExpenseUpdateFragment extends Fragment {
                         Integer.parseInt(edprice.getText().toString()),
                         idValue);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.mainFrame, new IncomeEditFragment()).addToBackStack(null).commit();
+                fragmentTransaction.replace(R.id.mainFrame, new ExpenseEditFragment()).addToBackStack(null).commit();
                 break;
         }
         return super.onOptionsItemSelected(item);

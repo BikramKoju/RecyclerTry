@@ -153,13 +153,13 @@ public class ExpenseAddFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.toolbar_save2, menu);
+        inflater.inflate(R.menu.toolbar_save, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.savexp:
+            case R.id.save:
 
                 try {
                     name = edname.getText().toString();

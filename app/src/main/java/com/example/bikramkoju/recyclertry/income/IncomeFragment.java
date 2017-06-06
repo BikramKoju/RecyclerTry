@@ -98,7 +98,7 @@ public class IncomeFragment extends Fragment {
 
                 db.insertResult(image,title,price,fid);
 
-                Toast.makeText(getActivity(), "onClick" + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Income Added " + "RS " + incomeDetail.getPrice(), Toast.LENGTH_SHORT).show();
 
             }
 

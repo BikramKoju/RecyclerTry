@@ -97,13 +97,14 @@ public class ExpenseEditFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
        menu.clear();
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.toolbar_menu_adde,menu);
+        inflater.inflate(R.menu.toolbar_menu_add,menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
        switch (item.getItemId()){
-           case R.id.adde:
+           case R.id.add:
+
                FragmentTransaction fragmentTransaction=getActivity().getSupportFragmentManager().beginTransaction();
                fragmentTransaction.replace(R.id.mainFrame, new ExpenseAddFragment()).addToBackStack(null).commit();
                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("ADD Expenses");

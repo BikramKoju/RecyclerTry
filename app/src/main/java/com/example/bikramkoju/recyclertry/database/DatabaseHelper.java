@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     ArrayList<IncomeDetail> myReadData = new ArrayList<>();
 
     ArrayList<ExpenseDetail> myReadDataExpense = new ArrayList<>();
-    ArrayList<Result> myReadResult=new ArrayList<>();
+    ArrayList<Result> myReadResult = new ArrayList<>();
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -59,24 +59,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void updateData(String title,int img,int price,int id){
+    public void updateData(String title, int img, int price, int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("image", img);
         cv.put("title", title);
         cv.put("price", price);
         cv.put("id", id);
-        db.update(TABLENAME,cv,"id=" +id,null);
+        db.update(TABLENAME, cv, "id=" + id, null);
     }
 
-    public void updateDataExpense(String title,int img,int price,int id){
+    public void updateDataExpense(String title, int img, int price, int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("image", img);
         cv.put("title", title);
         cv.put("price", price);
         cv.put("id", id);
-        db.update(TABLENAME2,cv,"id=" +id,null);
+        db.update(TABLENAME2, cv, "id=" + id, null);
     }
 
     public void insertResult(int image, String title, int price, int fid) {
@@ -88,35 +88,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put("fid", fid);
         db.insert(RESULT, null, cv);
     }
- public int getTotal(String mode){
-     SQLiteDatabase db=this.getReadableDatabase();
-     int fid;
-     int total=0;
-     int itotal=0;
-     int etotal=0;
-     Cursor cursor=db.rawQuery("select * from " +RESULT, null);
-     if (cursor.getCount()!=0){
-         if (cursor.moveToFirst()){
-             do{
-                 fid=cursor.getInt(cursor.getColumnIndex("fid"));
-                 if (fid==2)
-                 {
-                     itotal=itotal+cursor.getInt(cursor.getColumnIndex("price"));
-                 }
-                 else if(fid==1){
-                     etotal=etotal+cursor.getInt(cursor.getColumnIndex("price"));
-                 }
 
-             }while (cursor.moveToNext());
-         }
-     }
-     if (mode.equals("income"))
-         total=itotal;
-     else if (mode.equals("exp")){
-         total=etotal;
-     }
-     return total;
- }
+    public int getTotal(String mode) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int fid;
+        int total = 0;
+        int itotal = 0;
+        int etotal = 0;
+        Cursor cursor = db.rawQuery("select * from " + RESULT, null);
+        if (cursor.getCount() != 0) {
+            if (cursor.moveToFirst()) {
+                do {
+                    fid = cursor.getInt(cursor.getColumnIndex("fid"));
+                    if (fid == 2) {
+                        itotal = itotal + cursor.getInt(cursor.getColumnIndex("price"));
+                    } else if (fid == 1) {
+                        etotal = etotal + cursor.getInt(cursor.getColumnIndex("price"));
+                    }
+
+                } while (cursor.moveToNext());
+            }
+        }
+        if (mode.equals("income"))
+            total = itotal;
+        else if (mode.equals("exp")) {
+            total = etotal;
+        }
+        return total;
+    }
+
     public ArrayList<Result> getResult() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from " + RESULT, null);
@@ -215,6 +215,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return myReadDataExpense;
     }
-
-
 }
